@@ -28,28 +28,28 @@ whoami /user
 Write-Host "`n`nStarting to STOP Desktop Authority on computer $env:computername `n"
 
 Set-Service -Name "DACBMSvc" -StartupType Disabled
-if ($?) { Write-host "Service Disabled successfully.`n"
+if ($?) { Write-host "DACBMSvc Service Disabled successfully.`n"
     } else {
-    Write-Host "Failed to Disable service.`n"
+    Write-Host "Failed to Disable service DACBMSvc.`n"
     }
 
 Stop-Service -Name "DACBMSvc"
-if ($?) { Write-host "Service successfully stopped.`n"
+if ($?) { Write-host "Service DACBMSvc successfully stopped.`n"
     } else {
-    Write-Host "Failed to stop service.`n"
+    Write-Host "Failed to stop service DACBMSvc.`n"
     }
 
 
 Set-Service -Name "DAClientSvc" -StartupType Disabled
-if ($?) { Write-host "Service Disabled successfully.`n"
+if ($?) { Write-host "DAClientSvc Service Disabled successfully.`n"
     } else {
-    Write-Host "Failed to Disable service.`n"
+    Write-Host "Failed to Disable service DAClientSvc.`n"
     }
 
 Stop-Service -Name "DAClientSvc"
-if ($?) { Write-host "Service successfully stopped.`n"
+if ($?) { Write-host "DAClientSvc Service successfully stopped.`n"
     } else {
-    Write-Host "Failed to stop service.`n"
+    Write-Host "Failed to stop service DAClientSvc.`n"
     }
 
 Write-Host "`n`nEnding STOP Desktop Authority on computer $env:computername `n"
