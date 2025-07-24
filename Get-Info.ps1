@@ -25,15 +25,21 @@ Start-Transcript -Path $logfile
 Write-Host "`n`n   Script is being run as the user shown below"
 whoami /user
 
-Write-Host "`n`n   Starting to gather information on computer $env:computername `n"
+Write-Host "`n`nStarting to gather information on computer $env:computername `n"
 
-Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, Publisher, InstallDate, DisplayVersion | Format-Table â€“AutoSize
-
-Get-WmiObject -Class Win32_Product | Select-Object Name, Version, Vendor
-
+Write-Host "`n`nList all services"
+Write-Host "------------------------------------------------------"
 Get-Service
 
-Write-Host "`n`n   Ending the gathering of information on computer $env:computername `n"
+Write-Host "`n`n`nQuery Registry for installed applications"
+Write-Host "------------------------------------------------------------------------------------------------------------------------------------------------------------"
+Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, Publisher, InstallDate, DisplayVersion | Format-Table –AutoSize
+
+Write-Host "`n`nQueries the registry key that stores information about installed software, specifically focusing on the 64-bit portion of the registry"
+Write-Host "------------------------------------------------------------------------------------------------------------------------------------------------------------"
+Get-WmiObject -Class Win32_Product | Select-Object Name, Version, Vendor
+
+Write-Host "`n`nEnding the gathering of information on computer $env:computername `n"
 
 $dateTime = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 
